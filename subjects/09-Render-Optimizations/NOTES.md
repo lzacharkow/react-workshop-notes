@@ -45,5 +45,3 @@ Only render the items that are in the view. As the user scrolls, push more items
 Check out the exercise solution for this.
 
 Also see: **react-window, react-virtualized (predecessor)**
-
-#react-training

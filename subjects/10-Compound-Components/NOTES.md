@@ -117,5 +117,3 @@ render() {
 	}</div>;
 }
 ```
-
-#react-training

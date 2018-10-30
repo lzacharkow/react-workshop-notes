@@ -25,7 +25,8 @@ Because `RenderPropComponent` is declared in render, it'll update every time the
 * Lots of indented components can lead to the "triangle of death".
 * Render props aren’t available in lifecycle methods. If you need this, use an HOC (or context).
 
-You can _also_ implement a HOC _with_ a render prop… (this is nuts)
+### Next-level (you probably don't need to do this)...
+You can _also_ implement a HOC _with_ a render prop…
 ```js
 function myHigherOrderComponent(MyComponent) {
 	return class extends React.Component {
