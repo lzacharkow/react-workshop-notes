@@ -1,6 +1,10 @@
-## Welcome to React Training!
+## Notes from Advanced React Training
 
-This repo contains the course material for [React Training](https://reacttraining.com/). Before attending the training, please make sure you can run this repository.
+This repo contains the course material for [React Training](https://reacttraining.com/) and notes from what was covered in the Advanced course I took in SF in Fall 2018.
+
+_**Note:** This is a clone of the original repo with my personal notes scattered herein as NOTES.md files. I don't take credit for the material in this repo in any way._
+
+## Setup
 
 First, install [git](http://git-scm.com/downloads) and the latest stable version of [node](https://nodejs.org/). Then:
 
@@ -14,6 +18,16 @@ $ npm start
 Your web browser should open to [http://localhost:8080](http://localhost:8080)where you'll see a list of subjects.
 
 **IMPORTANT:** Please read the [JavaScript Primer](https://github.com/ReactTraining/react-workshop/blob/master/JavaScriptPrimer.md) before attending the workshop. It's a refresher on some of the newer bits of JavaScript you'll want to be familiar with in order to get the most out of the experience.
+
+## My notes from the subjects
+- [5. Imperative vs Declarative](subjects/05-Imperative-to-Declarative/NOTES.md)
+- [7. Higher-Order Components](subjects/07-Higher-Order-Components/NOTES.md)
+- [8. Render Props](subjects/08-Render-Props/NOTES.md)
+- [9. Render Optimizations](subjects/09-Render-Optimizations/NOTES.md)
+- [10. Compound Components](subjects/10-Compound-Components/NOTES.md)
+- [11. Context](subjects/11-Context/NOTES.md)
+- [General notes](GENERAL-NOTES.md)
+
 
 ### Troubleshooting
 
