@@ -2,20 +2,24 @@
 This is an alternate solution to sharing code between components. It’s a good substitution for HOCs. Instead of wrapping your component as a decorator, you wrap the pieces of it that need the shared code in the render prop component...
 ```js
 return (
-	<RenderPropComponent
-		render={renderProps => (
-			<div>{doSomething(renderProps.foo)}</div>
-		)}
+  <RenderPropComponent
+    render={renderProps => (
+      <div>
+        {doSomething(renderProps.foo)}
+      </div>
+    )}
   />
 );
 ```
 OR
 ```js
 return (
-	<RenderPropComponent>
-		{renderProps => (
-			<div>{doSomething(renderProps.foo)}</div>
-		)}
+  <RenderPropComponent>
+    {renderProps => (
+      <div>
+        {doSomething(renderProps.foo)}
+      </div>
+    )}
   </RenderPropComponent>
 );
 ```
