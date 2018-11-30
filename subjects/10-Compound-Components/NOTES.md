@@ -6,9 +6,6 @@ Let’s say you have a Tabs component…
   tabData={[{ name: 'Tacos', panel: <div>...</div> }]} 
 />
 ```
-
-[image:51546B35-323A-4D91-86E1-42DF0D5C77D5-2174-0000042C0E0C3725/Screen Shot 2018-10-24 at 10.12.52 AM.png]
-[image:325AA36A-E035-4493-BCB0-3B35BC9C676D-24885-000083965814D235/Screen Shot 2018-10-24 at 10.12.52 AM.png]
 Then your coworker wants them to be on the bottom instead of the top. You may make a `tabPosition="top"/"bottom"` attribute
 
 Then another coworker wants disabled tabs.
