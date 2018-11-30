@@ -6,21 +6,45 @@ Context is an api for passing information between component without passing prop
 
 First, make the context. You can pass in a default context.
 ```js
-const TabsContext = React.createContext({ activeIndex: 2 });
+const ExampleContext = React.createContext({ selectedOption: 2 });
 ```
 Every context has a Provider and Consumer. Think of it as pub/sub relationship.
+
+The Provider receives the context as its `value` prop.
 ```js
-// In your parent...
+class Parent extends React.Component {
 
-state = { value: 3 }
+  state = { selectedOption: 3 }
 
-render() {
+  render() {
+    return (
+      <ExampleContext.Provider
+        value={{ selectedOption: this.state.selectedOption }}
+      >
+        {this.props.children}
+      </ExampleContext.Provider>
+    );
+  }
+}
+
+function Child() {
   return (
-    <TabsContext.Provider
-      value={{ activeIndex: this.state.value }}
-    >
-      {this.props.children}
-    </TabsContext.Provider>
+    <ExampleContext.Consumer>
+      {value => (
+        value.selectedOption
+      )}
+    </ExampleContext.Consumer>
   );
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      <Parent>
+        <Child />
+        <Child />
+      </Parent>
+    );
+  }
 }
 ```
