@@ -2,7 +2,9 @@
 How do you make components that are re-usable for different situations?
 Let’s say you have a Tabs component…
 ```html
-<Tabs tabData={[{ name: 'Tacos', panel: <div>...</div> }]} />
+<Tabs 
+  tabData={[{ name: 'Tacos', panel: <div>...</div> }]} 
+/>
 ```
 
 [image:51546B35-323A-4D91-86E1-42DF0D5C77D5-2174-0000042C0E0C3725/Screen Shot 2018-10-24 at 10.12.52 AM.png]
@@ -16,13 +18,13 @@ You may make a `disabledTabs=[tabIndexes]` attribute
 ```html
 <Tabs>
   <TabList>
-		<Tab></Tab>
-		<Tab></Tab>
-	</TabList>
-	<TabPanels>
-		<Panel></Panel>
-		<Panel></Panel>
-	</TabPanel>
+    <Tab>Cats</Tab>
+    <Tab>Dogs</Tab>
+  </TabList>
+  <TabPanels>
+    <Panel>Cats: An animal that rules.</Panel>
+    <Panel>Dogs: A different animal, that drools.</Panel>
+  </TabPanel>
 </Tabs>
 ```
 
@@ -34,17 +36,21 @@ Clone the children in Tabs and add a new prop, `_activeIndex` to their prop list
 ```js
 // in Tabs
 render() {
-	return <div>{
-		React.Children.map(this.props.children, child => {
-			if (child.type === TabList) {
-				return React.cloneElement(child, {
-					_activeIndex: this.state.activeIndex,
-				});
-			} else {
-				return child;
-			}
-		})
-	}</div>;
+  return (
+    <div>
+      {React.Children.map(this.props.children, child => {
+        if (child.type === TabList) {
+          return React.cloneElement(child, 
+	    {
+              _activeIndex: this.state.activeIndex,
+	    }
+	  );
+        } else {
+          return child;
+        }
+      })}
+    </div>
+  );
 }
 ```
 
@@ -52,13 +58,17 @@ Then, clone the children in TabList and do evaluation on every tab to decide if 
 
 ```js
 function TabList({ children, _activeIndex }) {
-	return <div>{
-		React.Children.map(children, (child, index) => (
-			React.cloneElement(child, {
-				_isActive: _activeIndex === index
-			})
-		)
-	}</div>;
+  return (
+    <div>
+      {React.Children.map(children, (child, index) => (
+        React.cloneElement(child, 
+          {
+	    _isActive: _activeIndex === index,
+          }
+        )
+      )}
+    </div>
+  );
 }
 ```
 
@@ -68,30 +78,38 @@ We map through the children because we don’t want to mutate anything directly.
 ```js
 // in Tabs
 render() {
-	return <div>{
-		React.Children.map(this.props.children, child => {
-			if (child.type === TabList) {
-				return React.cloneElement(child, {
-					_activeIndex: this.state.activeIndex,
-				});
-			} else if (child.type === TabPanels) {  // <-- NEW
-				return React.cloneElement(child, {
-					_activeIndex: this.state.activeIndex,
-				});
-			} else {
-				return child;
-			}
-		})
-	}</div>;
+  return (
+    <div>
+      {React.Children.map(this.props.children, child => {
+        if (child.type === TabList) {
+          return React.cloneElement(child, 
+	    {
+              _activeIndex: this.state.activeIndex,
+            }
+	  );
+        } else if (child.type === TabPanels) {  // <-- NEW
+          return React.cloneElement(child, 
+	    {
+              _activeIndex: this.state.activeIndex,
+            }
+	  );
+        } else {
+          return child;
+        }
+      })}
+    </div>
+  );
 }
 ```
 
 In the panel only render the current panel
 ```js
 function TabPanels({ children, _activeIndex }) {
-	return <div>{
-		React.Children.toArray(children)[_activeIndex]
-	}</div>;
+  return (
+    <div>
+      {React.Children.toArray(children)[_activeIndex]}
+    </div>
+  );
 }
 ```
 
@@ -99,21 +117,25 @@ function TabPanels({ children, _activeIndex }) {
 Just pass them in the cloneElement
 ```
 setFoo(foo) {
-	this.setState({ foo });
+  this.setState({ foo });
 }
 
 render() {
-	return <div>{
-		React.Children.map(this.props.children, child => {
-			if (child.type === TabList) {
-				return React.cloneElement(child, {
-					_activeIndex: this.state.activeIndex,
-					_handleTabClick: setFoo // <-- NEW
-				});
-			} else {
-				return child;
-			}
-		})
-	}</div>;
+  return (
+    <div>
+      {React.Children.map(this.props.children, child => {
+        if (child.type === TabList) {
+          return React.cloneElement(child, 
+	    {
+              _activeIndex: this.state.activeIndex,
+              _handleTabClick: setFoo // <-- NEW
+            }
+	  );
+        } else {
+          return child;
+        }
+      })}
+    </div>
+  );
 }
 ```
