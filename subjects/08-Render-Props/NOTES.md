@@ -33,14 +33,20 @@ Because `RenderPropComponent` is declared in render, it'll update every time the
 You can _also_ implement a HOC _with_ a render prop…
 ```js
 function myHigherOrderComponent(MyComponent) {
-	return class extends React.Component {
-		render() {
-			return (
-				<RenderPropComponent>
-					{renderProps => <MyComponent {...this.props} foo={renderProps.foo} />}
-				</RenderPropComponent>
-			);
-		}
-	}
+
+  return class extends React.Component {
+    render() {
+
+      return (
+        <RenderPropComponent>
+          {renderProps => (
+	    <MyComponent {...this.props} foo={renderProps.foo} />
+	  )}
+        </RenderPropComponent>
+      );
+
+    }
+  }
+
 }
 ```
